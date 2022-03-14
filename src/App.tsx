@@ -1,8 +1,9 @@
-import { ScreenWrapper } from './components';
+import { Navbar, ScreenWrapper } from './components';
 
 function App() {
     return (
         <ScreenWrapper>
+            <Navbar />
             <div>
                 <input />
                 <button>SZYFROWANIE BRRR</button>

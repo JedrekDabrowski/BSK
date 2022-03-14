@@ -9,7 +9,7 @@ export const ScreenWrapper: React.FC = ({ children }) => {
 const Wrapper = styled.div`
     display: flex;
     height: 100vh;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
     background: linear-gradient(to right top, ${Colors.primary}, ${Colors.second});
 `;
