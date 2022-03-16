@@ -30,11 +30,11 @@ export const decrypt = (text: string, shift: number) => {
 
         if (letter === letter.toUpperCase())
             decryptedText = decryptedText.concat(
-                String.fromCharCode(((letter.charCodeAt(0) + (26 - shift - 65)) % ALPHABET_LENGTH) + 65),
+                String.fromCharCode(((letter.charCodeAt(0) + (ALPHABET_LENGTH - shift - 65)) % ALPHABET_LENGTH) + 65),
             );
         else
             decryptedText = decryptedText.concat(
-                String.fromCharCode(((letter.charCodeAt(0) + (26 - shift) - 97) % ALPHABET_LENGTH) + 97),
+                String.fromCharCode(((letter.charCodeAt(0) + (ALPHABET_LENGTH - shift) - 97) % ALPHABET_LENGTH) + 97),
             );
     }
 
