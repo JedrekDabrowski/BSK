@@ -5,7 +5,7 @@ interface TextAreaWithLabelI extends React.HTMLProps<HTMLTextAreaElement> {
     label: string;
 }
 
-export const TextAreaWithLabel: React.FC<TextAreaWithLabelI> = ({ label, ...props }) => {
+export const TextAreaWithLabel: React.FC<TextAreaWithLabelI> = ({ label, ...props }: any) => {
     return (
         <InputWrapper>
             <InputLabel>{label}</InputLabel>

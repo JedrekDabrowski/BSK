@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
+import { decrypt, encrypt } from '../../ciphers/RailFenceCipher';
 
 export const Rail_Fence: React.FC = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
-    const [key, setKey] = useState('');
-
+    const [key, setKey] = useState<number>(1);
     return (
         <RowWrapper>
             <TextAreaWithLabel
@@ -19,16 +19,25 @@ export const Rail_Fence: React.FC = () => {
             />
             <CenterWrapper>
                 <InputWithLabel
+                    type="number"
                     label="KEY"
+                    min={1}
+                    max={input.length - 1}
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        setKey(value);
+                        setKey(parseInt(value));
                     }}
                 />
-                <Button value="a" onClick={() => setOutput(input + key)}>
-                    LETS GO
+                <Button
+                    onClick={() => {
+                        setInput('');
+                        setOutput(encrypt(input, key));
+                    }}
+                >
+                    UTAJNIJ WIADOMOŚĆ
                 </Button>
+                <Button onClick={() => setInput(decrypt(output, key))}>ZŁAM SZYFR!</Button>
             </CenterWrapper>
             <TextAreaWithLabel
                 label="OUTPUT"

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
+import { decrypt, encrypt } from '../../ciphers/CaesarCipher';
 
 export const Cezar: React.FC = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
-    const [key, setKey] = useState('');
+    const [key, setKey] = useState<number>(1);
 
     return (
         <RowWrapper>
@@ -20,15 +21,24 @@ export const Cezar: React.FC = () => {
             <CenterWrapper>
                 <InputWithLabel
                     label="KEY"
+                    type="number"
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        setKey(value);
+                        if (value !== '') {
+                            setKey(parseInt(value));
+                        }
                     }}
                 />
-                <Button value="a" onClick={() => setOutput(input + key)}>
-                    LETS GO
+                <Button
+                    onClick={() => {
+                        setInput('');
+                        setOutput(encrypt(input, key));
+                    }}
+                >
+                    UTAJNIJ WIADOMOŚĆ
                 </Button>
+                <Button onClick={() => setInput(decrypt(output, key))}>ZŁAM SZYFR!</Button>
             </CenterWrapper>
 
             <TextAreaWithLabel
