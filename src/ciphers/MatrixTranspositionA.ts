@@ -16,7 +16,7 @@ export const encrypt = (text: string, key: string): string => {
     matrix.forEach((column: string[]) => {
         arrayFromKey.forEach((numberOfColumn) => {
             const value = column[parseInt(numberOfColumn) - 1];
-            encryptedText = value !== undefined ? encryptedText.concat(value) : encryptedText.concat('');
+            encryptedText = value !== undefined ? encryptedText.concat(value) : encryptedText.concat(' ');
         });
     });
     return encryptedText;
