@@ -21,7 +21,6 @@ export const Vigenere: React.FC = () => {
             <CenterWrapper>
                 <InputWithLabel
                     label="KEY"
-                    type="number"
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
