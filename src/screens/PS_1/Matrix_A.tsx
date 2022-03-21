@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
+import { CenterWrapper, RowWrapper } from '../../assets/styles/common';
 
-export const Matrix_1: React.FC = () => {
+export const Matrix_A: React.FC = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
     const [key, setKey] = useState('');
@@ -43,15 +44,3 @@ export const Matrix_1: React.FC = () => {
         </RowWrapper>
     );
 };
-
-const RowWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const CenterWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;

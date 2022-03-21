@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
 import { decrypt, encrypt } from '../../ciphers/RailFenceCipher';
+import { CenterWrapper, RowWrapper } from '../../assets/styles/common';
 
 export const Rail_Fence: React.FC = () => {
     const [input, setInput] = useState('');
@@ -51,15 +51,3 @@ export const Rail_Fence: React.FC = () => {
         </RowWrapper>
     );
 };
-
-const RowWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const CenterWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
