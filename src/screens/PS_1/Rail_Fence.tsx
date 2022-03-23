@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
 import { decrypt, encrypt } from '../../ciphers/RailFenceCipher';
-import { CenterWrapper, RowWrapper } from '../../assets/styles/common';
+import { CenterWrapper, RowWrapper } from '../../styles/common';
 
 export const Rail_Fence: React.FC = () => {
     const [input, setInput] = useState('');

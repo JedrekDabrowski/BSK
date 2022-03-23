@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
-import { CenterWrapper, RowWrapper } from '../../assets/styles/common';
+import { CenterWrapper, RowWrapper } from '../../styles/common';
 
 export const Matrix_A: React.FC = () => {
     const [input, setInput] = useState('');

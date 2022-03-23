@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
-import { CenterWrapper, RowWrapper } from '../../assets/styles/common';
+import { CenterWrapper, RowWrapper } from '../../styles/common';
 
 export const Matrix_B: React.FC = () => {
     const [input, setInput] = useState('');
