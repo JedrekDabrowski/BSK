@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
 import { CenterWrapper, RowWrapper } from '../../styles/common';
+import { decrypt, encrypt } from '../../ciphers/MatrixTranspositionA';
 
 export const Matrix_A: React.FC = () => {
     const [input, setInput] = useState('');
@@ -24,12 +24,20 @@ export const Matrix_A: React.FC = () => {
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        setKey(value);
+                        if (value !== '') {
+                            setKey(value);
+                        }
                     }}
                 />
-                <Button value="a" onClick={() => setOutput(input + key)}>
-                    LETS GO
+                <Button
+                    onClick={() => {
+                        setInput('');
+                        setOutput(encrypt(input, key));
+                    }}
+                >
+                    UTAJNIJ WIADOMOŚĆ
                 </Button>
+                <Button onClick={() => setInput(decrypt(output, key))}>ZŁAM SZYFR!</Button>
             </CenterWrapper>
 
             <TextAreaWithLabel

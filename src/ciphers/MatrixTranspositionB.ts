@@ -2,7 +2,7 @@ export const encrypt = (text: string, key: string): string => {
     const arrayFromText: string[] = [...text.replace(/ /g, '')];
     const arrayFromKey: string[] = [...key];
     const numberOfRows: number =
-        arrayFromText.length / arrayFromKey.length !== 0
+        arrayFromText.length / arrayFromKey.length !== 1
             ? Math.round(arrayFromText.length / arrayFromKey.length + 1)
             : Math.round(arrayFromText.length / arrayFromKey.length);
     const numberOfColumns: number = arrayFromKey.length;
@@ -22,10 +22,7 @@ export const encrypt = (text: string, key: string): string => {
             x++;
         }
     }
-    console.log(matrix);
-
     const map: Record<string, number[]> = {};
-
     for (let i: number = 0; i < arrayFromKey.length; i++) {
         if (Object.keys(map).includes(arrayFromKey[i])) {
             const array = map[arrayFromKey[i]];
@@ -49,13 +46,12 @@ export const encrypt = (text: string, key: string): string => {
 
 export const decrypt = (text: string, key: string): string => {
     const arrayFromText = text.split(' ').filter((x) => x !== '');
-    console.log(arrayFromText);
     const arrayFromKey: string[] = [...key];
     const numberOfRows: number = Math.round([...text.replace(/ /g, '')].length / arrayFromKey.length + 1);
     const numberOfColumns: number = arrayFromKey.length;
 
     let x: number = 0;
-    let matrix = [];
+    let matrix: string[][] = [];
     let decryptedText: string = '';
 
     const map: Record<string, number[]> = {};
@@ -73,14 +69,10 @@ export const decrypt = (text: string, key: string): string => {
 
     sortedMap.forEach((block) => {
         block[1].forEach((value) => {
-            console.log(arrayFromText[x]);
-            console.log(arrayFromText.length);
-
-            matrix[value] = [...arrayFromText[x]];
+            matrix[value] = arrayFromText[x].split('');
             x++;
         });
     });
-
     for (let j: number = 0; j < numberOfRows; j++) {
         for (let i: number = 0; i < numberOfColumns; i++) {
             if (matrix[i][j] !== undefined) {
