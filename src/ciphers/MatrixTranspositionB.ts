@@ -2,27 +2,17 @@ export const encrypt = (text: string, key: string): string => {
     const arrayFromText: string[] = [...text.replace(/ /g, '')];
     const arrayFromKey: string[] = [...key];
     const numberOfRows: number =
-        arrayFromText.length / arrayFromKey.length !== 0
-            ? Math.round(arrayFromText.length / arrayFromKey.length + 1)
-            : Math.round(arrayFromText.length / arrayFromKey.length);
+        arrayFromText.length / arrayFromKey.length !== 1
+            ? Math.floor(arrayFromText.length / arrayFromKey.length) + 1
+            : Math.floor(arrayFromText.length / arrayFromKey.length);
     const numberOfColumns: number = arrayFromKey.length;
 
-    let x: number = 0;
-    let matrix = new Array(numberOfColumns).fill('*').map(() => new Array(numberOfRows).fill('*'));
+    let matrix = new Array(numberOfColumns).fill(' ').map(() => new Array(numberOfRows).fill(' '));
     let encryptedText: string = '';
 
-    for (let j: number = 0; j < numberOfRows; j++) {
-        for (let i: number = 0; i < numberOfColumns; i++) {
-            matrix[i][j] = arrayFromText[x];
-            if (matrix[i][j] === undefined) {
-                matrix[i][j] = ' ';
-            } else if (i === 0 && j === numberOfRows - 1 && matrix[i][j] !== ' ') {
-                matrix[i][j] = arrayFromText[x] + ' ';
-            }
-            x++;
-        }
+    for (let i: number = 0; i < arrayFromText.length; i++) {
+        matrix[i % numberOfColumns] = matrix[i % numberOfColumns].concat(arrayFromText[i]);
     }
-    console.log(matrix);
 
     const map: Record<string, number[]> = {};
 
@@ -49,9 +39,11 @@ export const encrypt = (text: string, key: string): string => {
 
 export const decrypt = (text: string, key: string): string => {
     const arrayFromText = text.split(' ').filter((x) => x !== '');
-    console.log(arrayFromText);
     const arrayFromKey: string[] = [...key];
-    const numberOfRows: number = Math.round([...text.replace(/ /g, '')].length / arrayFromKey.length + 1);
+    const numberOfRows: number =
+        [...text].length / arrayFromKey.length !== 1
+            ? Math.floor([...text].length / arrayFromKey.length) + 1
+            : Math.floor(arrayFromText.length / arrayFromKey.length);
     const numberOfColumns: number = arrayFromKey.length;
 
     let x: number = 0;
@@ -73,21 +65,20 @@ export const decrypt = (text: string, key: string): string => {
 
     sortedMap.forEach((block) => {
         block[1].forEach((value) => {
-            console.log(arrayFromText[x]);
-            console.log(arrayFromText.length);
-
-            matrix[value] = [...arrayFromText[x]];
-            x++;
+            if (arrayFromText[x] !== undefined) {
+                matrix[value] = [...arrayFromText[x]];
+                x++;
+            }
         });
     });
 
     for (let j: number = 0; j < numberOfRows; j++) {
         for (let i: number = 0; i < numberOfColumns; i++) {
-            if (matrix[i][j] !== undefined) {
+            if (matrix[i] !== undefined && matrix[i][j] !== undefined) {
                 decryptedText = decryptedText.concat(matrix[i][j]);
             }
         }
     }
 
-    return decryptedText;
+    return decryptedText.trim();
 };
