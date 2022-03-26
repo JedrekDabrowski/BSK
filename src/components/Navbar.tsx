@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../assets/Colors';
 
-const ciphers = ['Rail Fence', 'Matrix A', 'Matrix B', 'Cezar', 'Vigenere'];
+const ciphers = ['Rail Fence', 'Matrix A', 'Matrix B', 'Matrix C', 'Cezar', 'Vigenere'];
 
 export const Navbar = () => {
     const navigate = useNavigate();
@@ -36,6 +36,4 @@ const StyledSelect = styled.select`
     outline: none;
 `;
 
-const StyledOption = styled.option`
-    box-shadow: 0 0 10px 100px #1882a8 inset;
-`;
+const StyledOption = styled.option``;

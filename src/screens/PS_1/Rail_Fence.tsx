@@ -21,7 +21,7 @@ export const Rail_Fence: React.FC = () => {
                 <InputWithLabel
                     type="number"
                     label="KEY"
-                    min={1}
+                    min={2}
                     max={input.length - 1}
                     value={key}
                     onChange={(e) => {

@@ -24,9 +24,7 @@ export const Matrix_B: React.FC = () => {
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        if (value !== '') {
-                            setKey(value);
-                        }
+                        setKey(value);
                     }}
                 />
                 <Button
