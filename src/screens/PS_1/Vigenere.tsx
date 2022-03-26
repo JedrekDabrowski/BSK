@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
+import { decrypt, encrypt } from '../../ciphers/Vigenerea';
+import { CenterWrapper, RowWrapper } from '../../styles/common';
 
 export const Vigenere: React.FC = () => {
     const [input, setInput] = useState('');
@@ -23,12 +24,20 @@ export const Vigenere: React.FC = () => {
                     value={key}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        setKey(value);
+                        if (value !== '') {
+                            setKey(value);
+                        }
                     }}
                 />
-                <Button value="a" onClick={() => setOutput(input + key)}>
-                    LETS GO
+                <Button
+                    onClick={() => {
+                        setInput('');
+                        setOutput(encrypt(input, key));
+                    }}
+                >
+                    UTAJNIJ WIADOMOŚĆ
                 </Button>
+                <Button onClick={() => setInput(decrypt(output, key))}>ZŁAM SZYFR!</Button>
             </CenterWrapper>
 
             <TextAreaWithLabel
@@ -43,15 +52,3 @@ export const Vigenere: React.FC = () => {
         </RowWrapper>
     );
 };
-
-const RowWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const CenterWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;

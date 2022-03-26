@@ -5,7 +5,7 @@ interface TextAreaWithLabelI extends React.HTMLProps<HTMLTextAreaElement> {
     label: string;
 }
 
-export const TextAreaWithLabel: React.FC<TextAreaWithLabelI> = ({ label, ...props }) => {
+export const TextAreaWithLabel: React.FC<TextAreaWithLabelI> = ({ label, ...props }: any) => {
     return (
         <InputWrapper>
             <InputLabel>{label}</InputLabel>
@@ -25,14 +25,13 @@ const InputWrapper = styled.div`
 const StyledInput = styled.textarea`
     width: 40%;
     padding: 4px 8px;
-    border-radius: 8px;
     border: 2px solid ${colors.primary};
     color: ${colors.primary};
     background-color: ${colors.background};
     outline: none;
 `;
 const InputLabel = styled.p`
-    color: ${({ theme }) => theme.fontColor};
+    color: ${colors.primary};
     font-family: Roboto-Regular, Arial, Helvetica, sans-serif;
     text-transform: capitalize;
     padding: 0.5rem;

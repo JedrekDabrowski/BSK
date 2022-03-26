@@ -8,7 +8,6 @@ export const Button: React.FC<React.HTMLProps<HTMLButtonElement>> = (props: any)
 const StyledButton = styled.button`
     background-color: ${colors.primary};
     border: 2px solid ${colors.primary};
-    border-radius: 8px;
     padding: 0.4rem;
     color: ${colors.text};
     cursor: pointer;
