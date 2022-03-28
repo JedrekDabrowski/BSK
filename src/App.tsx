@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { Navbar, ScreenWrapper } from './components';
-import { Cezar, Matrix_A, Matrix_B, Matrix_C, Rail_Fence } from './screens/PS_1';
-import { Vigenere } from './screens/PS_1/Vigenere';
+import { Cezar, Matrix_A, Matrix_B, Matrix_C, Rail_Fence, Vigenere } from './screens/PS_1';
+import { Lsfr } from './screens/PS_2/Lsfr';
 
 function App() {
     return (
@@ -15,6 +15,7 @@ function App() {
                     <Route path="/matrix_c" element={<Matrix_C />} />
                     <Route path="/cezar" element={<Cezar />} />
                     <Route path="/vigenere" element={<Vigenere />} />
+                    <Route path="/lsfr" element={<Lsfr />} />
                 </Routes>
             </Router>
         </ScreenWrapper>
