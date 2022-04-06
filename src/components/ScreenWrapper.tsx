@@ -6,7 +6,7 @@ export const ScreenWrapper: React.FC = ({ children }) => {
     return (
         <>
             <BackgroundVideo autoPlay loop muted>
-                {/* <source src={require('../videos/background.mp4')} type="video/mp4" /> */}
+                <source src={require('../videos/background.mp4')} type="video/mp4" />
             </BackgroundVideo>
             <Wrapper>{children}</Wrapper>
         </>
