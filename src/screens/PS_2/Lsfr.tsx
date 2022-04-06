@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
-import { decrypt, encrypt } from '../../ciphers/Vigenerea';
 import { CenterWrapper, RowWrapper } from '../../styles/common';
+import { generateLFSRKey } from '../../utils';
 
 export const Lsfr: React.FC = () => {
-    const [input, setInput] = useState('');
+    const [lenght, setLength] = useState(0);
     const [output, setOutput] = useState('');
     const [key, setKey] = useState('');
 
@@ -21,7 +21,16 @@ export const Lsfr: React.FC = () => {
                         }
                     }}
                 />
-                <Button onClick={() => setInput(decrypt(output, key))}>GENERUJ KLUCZ!</Button>
+                <InputWithLabel
+                    type="number"
+                    label="LENGTH"
+                    value={lenght}
+                    onChange={(e) => {
+                        const { value } = e.target as HTMLInputElement;
+                        setLength(parseInt(value));
+                    }}
+                />
+                <Button onClick={() => setOutput(generateLFSRKey(key, lenght))}>GENERUJ KLUCZ!</Button>
             </CenterWrapper>
             <TextAreaWithLabel
                 label="OUTPUT"
