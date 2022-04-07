@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TextAreaWithLabel, InputWithLabel, Button } from '../../components';
 import { CenterWrapper, RowWrapper } from '../../styles/common';
-import { generateLFSRKey } from '../../utils';
+import { generateLSFRKey } from '../../utils';
 
 export const Lsfr: React.FC = () => {
     const [lenght, setLength] = useState(0);
@@ -30,7 +30,7 @@ export const Lsfr: React.FC = () => {
                         setLength(parseInt(value));
                     }}
                 />
-                <Button onClick={() => setOutput(generateLFSRKey(key, lenght))}>GENERUJ KLUCZ!</Button>
+                <Button onClick={() => setOutput(generateLSFRKey(key, lenght))}>GENERUJ KLUCZ!</Button>
             </CenterWrapper>
             <TextAreaWithLabel
                 label="OUTPUT"

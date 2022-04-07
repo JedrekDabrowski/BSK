@@ -1,2 +1,2 @@
-export * from './lfsr';
+export * from './lsfr';
 export * from './text2Binary';

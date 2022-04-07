@@ -1,37 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { streamCipher } from '../../ciphers/StreamCipher';
 import { Button, InputWithLabel, TextAreaWithLabel } from '../../components';
 import { RowWrapper, CenterWrapper } from '../../styles/common';
-import { text2Binary } from '../../utils';
-import { generateLFSRKey } from '../../utils/lfsr';
+import { generateLSFRKey } from '../../utils/lsfr';
 
 export const StreamCipher = () => {
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
-    const [key, setKey] = useState('');
-
-    useEffect(() => {
-        const text = 'Kamil to piekny chlopiec';
-        const lfsrKey = generateLFSRKey('1-4', text.length * 16);
-
-        streamCipher(text, lfsrKey);
-        const a = streamCipher(text, lfsrKey);
-        console.log(a);
-        const b = streamCipher(a, lfsrKey);
-        console.log(b);
-    });
-
-    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files.length > 0) {
-            const blob = new Blob([e.target.files[0]]);
-            const a = text2Binary(await blob.text());
-            const blob2 = new Blob([a]);
-            var file = new File([blob2], 'dupa');
-
-            console.log(file);
-        }
-    };
-
+    const [polynomial, setPolynomial] = useState('');
+    const [lfsr, setLfsr] = useState('');
     return (
         <RowWrapper>
             <TextAreaWithLabel
@@ -42,27 +19,28 @@ export const StreamCipher = () => {
                     setInput(value);
                 }}
             />
-            <InputWithLabel label="KEY" value={key} type="file" onChange={handleChange} />
             <CenterWrapper>
                 <InputWithLabel
-                    label="KEY"
-                    value={key}
+                    label="POLYNOMIAL"
+                    value={polynomial}
                     onChange={(e) => {
                         const { value } = e.target as HTMLInputElement;
-                        setKey(value);
+                        setPolynomial(value);
                     }}
                 />
                 <Button
                     onClick={() => {
                         setInput('');
-                        // setOutput(encrypt(input, key));
+                        const generatedLfsr = generateLSFRKey(polynomial, input.length * 16);
+                        setLfsr(generatedLfsr);
+                        setOutput(streamCipher(input, generatedLfsr));
                     }}
                 >
                     UTAJNIJ WIADOMOŚĆ
                 </Button>
                 <Button
                     onClick={() => {
-                        // setInput(decrypt(output, key))
+                        setInput(streamCipher(output, lfsr));
                     }}
                 >
                     ZŁAM SZYFR!
