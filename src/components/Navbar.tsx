@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../assets/Colors';
 
-const ciphers = ['Rail Fence', 'Matrix A', 'Matrix B', 'Matrix C', 'Cezar', 'Vigenere'];
+const ciphers = ['Rail Fence', 'Matrix A', 'Matrix B', 'Matrix C', 'Cezar', 'Vigenere', 'LSFR', 'Stream Cipher'];
 
 export const Navbar = () => {
     const navigate = useNavigate();
