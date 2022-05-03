@@ -1,4 +1,4 @@
-import { text2Binary16 } from '../utils';
+import { textToBin } from '../utils';
 /**
  * Szyfruje podany tekst z użyciem klucza LSFR.
  * @param text Tekst do zaszyfrowania.
@@ -7,7 +7,7 @@ import { text2Binary16 } from '../utils';
  */
 export const streamCipher = (text: string, lsfrKey: string) => {
     // Zamieniamy podan tekst na postać binarną
-    const binaryText = text2Binary16(text);
+    const binaryText = textToBin(text, 16);
     let cipher: string = '';
     // Podajemy operacje xot r kolejne bity ze słowa wejściowego oraz klucza LFSR
     for (let i: number = 0; i < binaryText.length; i++) {

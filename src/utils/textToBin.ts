@@ -3,14 +3,14 @@
  * @param text Tekst wejściowy do zamainy na podstać binarną.
  * @returns Postać binarna zaszyfrowanego tekstu.
  */
-export const text2Binary16 = (text: string) => {
+export const textToBin = (text: string, pad: number) => {
     return text
         .split('')
-        .map((char) => char.charCodeAt(0).toString(2).padStart(16, '0'))
+        .map((char) => char.charCodeAt(0).toString(2).padStart(pad, '0'))
         .join('');
 };
 
-export const text2BinaryDES = (text: string) => {
+export const textToBinDES = (text: string) => {
     const binaryText = text
         .split('')
         .map((char) => char.charCodeAt(0).toString(2))

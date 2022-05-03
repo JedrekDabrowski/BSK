@@ -1,2 +1,4 @@
 export * from './lsfr';
-export * from './text2Binary';
+export * from './textToBin';
+export * from './hexToBin';
+export * from './binToText';
