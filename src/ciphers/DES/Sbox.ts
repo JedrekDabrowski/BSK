@@ -1,5 +1,5 @@
-import { SBox } from '../../const/DesConst';
-import { textToBin } from '../../utils';
+import {SBox} from '../../const/DesConst';
+import {textToBin} from '../../utils';
 
 export const sBox = (input: string) => {
     let output = '';

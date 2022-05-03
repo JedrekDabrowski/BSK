@@ -1,6 +1,7 @@
 /**
- * Zamienia tekst na postać binarną oraz uzupełnia długość do 16 miejsc(zerami na początku)
+ * Zamienia tekst na postać binarną oraz uzupełnia długość do pad miejsc(zerami na początku)
  * @param text Tekst wejściowy do zamainy na podstać binarną.
+ * @param pad Liczba miejsc do uzupełnienia
  * @returns Postać binarna zaszyfrowanego tekstu.
  */
 export const textToBin = (text: string, pad: number) => {

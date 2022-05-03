@@ -1,4 +1,5 @@
-import { IP } from '../../const/DesConst';
+import {IP} from '../../const/DesConst';
+
 export const initialPermutation = (bits: string) => {
     const bitsArray = bits.split('');
     const bitsArrayAfterIP: string[] = [];
