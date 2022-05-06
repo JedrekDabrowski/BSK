@@ -1,16 +1,10 @@
-import {permutation} from "./Permutation";
-
 export const leftShift = (input: string, numberOfBits: number): string => {
-    let n: number = input.length * 4;
-    let perm: number[] = new Array(n);
 
-    for (let i: number = 0; i < n; i++) {
-        perm[i] = (i + 2);
-    }
-    perm[n - 1] = 1;
-    while (numberOfBits-- > 0) {
-        input = permutation(perm, input);
-    }
+    const partToShift: string = input.substring(0, numberOfBits);
+    let shiftedInput: string[] = input.split('');
 
-    return input;
+    for (let i: number = 0; i < numberOfBits; i++) {
+        shiftedInput.shift();
+    }
+    return shiftedInput.join('').concat(partToShift);
 }
