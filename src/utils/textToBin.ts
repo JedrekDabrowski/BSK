@@ -11,15 +11,12 @@ export const textToBin = (text: string, pad: number) => {
         .join('');
 };
 
-export const textToBinDES = (text: string) => {
-    const binaryText = text
+export const textToBinDES = (text: string, pad: number) => {
+    const binText = text
         .split('')
-        .map((char) => char.charCodeAt(0).toString(2))
+        .map((char) => char.charCodeAt(0).toString(2).padStart(pad, '0'))
         .join('');
-    let bitArray = binaryText.match(/.{1,64}/g);
-    if (bitArray) {
-        bitArray[bitArray.length - 1] = ('1' + bitArray[bitArray.length - 1]).padStart(64, '0');
-    }
-
-    return bitArray || [];
+    if (binText.length % 64 === 0) return binText;
+    const numberOfBlocks = Math.floor(binText.length / 64);
+    return binText.padStart((numberOfBlocks + 1) * 64, '0');
 };

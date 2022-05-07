@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
-import { DESCipher } from '../../ciphers/DES/DES';
-import { Button, TextAreaWithLabel } from '../../components';
+import { useState } from 'react';
+import { encrypt, decrypt } from '../../ciphers/DES/DES';
+import { Button, InputWithLabel, TextAreaWithLabel } from '../../components';
 import { RowWrapper, CenterWrapper } from '../../styles/common';
 
 export const Des = () => {
     const [input, setInput] = useState('');
+    const [key, setKey] = useState('');
     const [output, setOutput] = useState('');
-
-    useEffect(() => {
-        DESCipher('KAMILSLIMAK');
-    }, []);
 
     return (
         <RowWrapper>
@@ -22,15 +19,24 @@ export const Des = () => {
                 }}
             />
             <CenterWrapper>
+                <InputWithLabel
+                    type="text"
+                    label="KEY"
+                    value={key}
+                    onChange={(e) => {
+                        const { value } = e.target as HTMLInputElement;
+                        setKey(value);
+                    }}
+                />
                 <Button
                     onClick={() => {
                         setInput('');
-                        setOutput(DESCipher(input));
+                        setOutput(encrypt(input, key));
                     }}
                 >
                     UTAJNIJ WIADOMOŚĆ
                 </Button>
-                <Button onClick={() => setInput(DESCipher(output))}>ZŁAM SZYFR!</Button>
+                <Button onClick={() => setInput(decrypt(output, key))}>ZŁAM SZYFR!</Button>
             </CenterWrapper>
 
             <TextAreaWithLabel

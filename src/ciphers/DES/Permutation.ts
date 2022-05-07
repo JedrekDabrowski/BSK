@@ -1,13 +1,11 @@
-import {binToText, textToBin} from "../../utils";
+import { binToText, textToBinDES } from '../../utils';
 
 export const permutation = (sequence: number[], input: string): string => {
-    let output = '';
-    input = textToBin(input, 8);
+    let output: string = '';
 
-    for (const element of sequence) {
-        output += input.charAt(element - 1);
+    for (let i: number = 0; i < sequence.length; i++) {
+        output += input.charAt(sequence[i] - 1);
     }
-    output = binToText(output);
 
     return output;
-}
+};

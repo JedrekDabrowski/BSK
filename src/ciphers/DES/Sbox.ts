@@ -1,4 +1,4 @@
-import {SBox} from '../../const/DesConst';
+import { SBox } from '../../const/DesConst';
 
 export const sBox = (input: string) => {
     let output: string = '';

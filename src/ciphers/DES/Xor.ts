@@ -7,4 +7,4 @@ export const xor = (bin1: string, bin2: string): string => {
     }
 
     return afterXor;
-}
+};

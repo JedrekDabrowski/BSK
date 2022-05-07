@@ -1,5 +1,4 @@
 export const leftShift = (input: string, numberOfBits: number): string => {
-
     const partToShift: string = input.substring(0, numberOfBits);
     let shiftedInput: string[] = input.split('');
 
@@ -7,4 +6,4 @@ export const leftShift = (input: string, numberOfBits: number): string => {
         shiftedInput.shift();
     }
     return shiftedInput.join('').concat(partToShift);
-}
+};

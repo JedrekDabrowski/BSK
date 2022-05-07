@@ -1,7 +1,7 @@
-import {permutation} from "./Permutation";
-import {xor} from "./Xor";
-import {sBox} from "./Sbox";
-import {E, P} from "../../const/DesConst";
+import { permutation } from './Permutation';
+import { xor } from './Xor';
+import { sBox } from './Sbox';
+import { E, P } from '../../const/DesConst';
 
 export const round = (input: string, key: string): string => {
     let left: string = input.substring(0, 32);
@@ -19,4 +19,4 @@ export const round = (input: string, key: string): string => {
     left = xor(left, tmp);
 
     return right + left;
-}
+};
