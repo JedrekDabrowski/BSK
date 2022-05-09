@@ -1,5 +1,10 @@
 import { SBox } from '../../const/DesConst';
 
+/**
+ * Operacja S na danych wejściowych
+ * @param input wartość tekstowa w postaci ciągu binarnego
+ * @returns Dane wejściowe po operacji S
+ **/
 export const sBox = (input: string) => {
     let output: string = '';
 
