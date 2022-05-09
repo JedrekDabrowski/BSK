@@ -1,4 +1,4 @@
-import { SBox } from '../../const/DesConst';
+import {SBox} from '../../const/DesConst';
 
 /**
  * Operacja S na danych wejściowych

@@ -1,8 +1,8 @@
-import { permutation } from './Permutation';
-import { leftShift } from './LeftShift';
-import { PC1, PC2, shift } from '../../const/DesConst';
-import { textToBinDES } from '../../utils';
-import { modifyKey } from './ModifyKey';
+import {permutation} from './Permutation';
+import {leftShift} from './LeftShift';
+import {PC1, PC2, shift} from '../../const/DesConst';
+import {textToBinDES} from '../../utils';
+import {modifyKey} from './ModifyKey';
 
 /**
  * Generowanie kluczy do algorytmu DES na podstawie argumentu w postaci tekstowej
@@ -19,12 +19,11 @@ export const generateKeys = (key: string): string[] => {
     // poddajemy klucz permutacji z użyciemy tablicy P1
     keyInBinary = permutation(PC1, keyInBinary);
     // przesuwamy wartości klucza zgodnie z tablicą shift
+    //generowanie 16 kluczy o długości 48 bitów
     for (let i: number = 0; i < 16; i++) {
         keyInBinary =
             leftShift(keyInBinary.substring(0, 28), shift[i]) + leftShift(keyInBinary.substring(28, 56), shift[i]);
-
         keys[i] = permutation(PC2, keyInBinary);
     }
-
     return keys;
 };

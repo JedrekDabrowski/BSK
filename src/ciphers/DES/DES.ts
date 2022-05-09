@@ -1,8 +1,8 @@
-import { generateKeys } from './GenerateKeys';
-import { permutation } from './Permutation';
-import { binToText, textToBinDES } from '../../utils';
-import { IP, IP1 } from '../../const/DesConst';
-import { round } from './Round';
+import {generateKeys} from './GenerateKeys';
+import {permutation} from './Permutation';
+import {binToText, textToBinDES} from '../../utils';
+import {IP, IP1} from '../../const/DesConst';
+import {round} from './Round';
 
 /**
  * Funkcja szyfrująca podany ciąg tekstowy na podstawie klucza z użyciem algorytmu DES
@@ -20,17 +20,17 @@ export const encrypt = (text: string, key: string): string => {
     const blocks = textBin.match(/.{1,64}/g);
     // szyfrowanie wszytkich bloków 64 bitowych algorytmem DES
     blocks &&
-        blocks.forEach((block) => {
-            block = permutation(IP, block);
+    blocks.forEach((block) => {
+        block = permutation(IP, block);
 
-            for (let i: number = 0; i < 16; i++) {
-                block = round(block, keys[i]);
-            }
-            block = block.substring(32, 64) + block.substring(0, 32);
-            // permutacja końcowa na podstawie tablicy IP1
-            block = permutation(IP1, block);
-            output = output.concat(block);
-        });
+        for (let i: number = 0; i < 16; i++) {
+            block = round(block, keys[i]);
+        }
+        block = block.substring(32, 64) + block.substring(0, 32);
+        // permutacja końcowa na podstawie tablicy IP1
+        block = permutation(IP1, block);
+        output = output.concat(block);
+    });
     // zamiana postaci binarnej na tekst
     // @ts-ignore
     return binToText(output);
@@ -52,18 +52,18 @@ export const decrypt = (text: string, key: string): string => {
     const blocks = textBin.match(/.{1,64}/g);
     // deszyfrowanie wszytkich bloków 64 bitowych algorytmem DES
     blocks &&
-        blocks.forEach((block) => {
-            block = permutation(IP, block);
+    blocks.forEach((block) => {
+        block = permutation(IP, block);
 
-            for (let i: number = 15; i > -1; i--) {
-                block = round(block, keys[i]);
-            }
+        for (let i: number = 15; i > -1; i--) {
+            block = round(block, keys[i]);
+        }
 
-            block = block.substring(32, 64) + block.substring(0, 32);
+        block = block.substring(32, 64) + block.substring(0, 32);
 
-            block = permutation(IP1, block);
-            output = output.concat(block);
-        });
+        block = permutation(IP1, block);
+        output = output.concat(block);
+    });
     // zamiana postaci binarnej na tekst
     // @ts-ignore
     return binToText(output);
