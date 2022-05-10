@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../assets/Colors';
 
-const ciphers = ['Rail Fence', 'Matrix A', 'Matrix B', 'Matrix C', 'Cezar', 'Vigenere', 'LSFR', 'Stream Cipher'];
+const ciphers = ['DES', 'Rail Fence', 'Matrix A', 'Matrix B', 'Matrix C', 'Cezar', 'Vigenere', 'LSFR', 'Stream Cipher'];
 
 export const Navbar = () => {
     const navigate = useNavigate();
 
-    const [menuOpen, setMenuOpen] = useState('Rail Fence');
+    const [menuOpen, setMenuOpen] = useState('DES');
 
     useEffect(() => {
         navigate(menuOpen.replace(' ', '_').toLowerCase());

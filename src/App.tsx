@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { Navbar, ScreenWrapper } from './components';
 import { Cezar, Matrix_A, Matrix_B, Matrix_C, Rail_Fence, Vigenere } from './screens/PS_1';
 import { Lsfr, StreamCipher } from './screens/PS_2';
+import { Des } from './screens/PS_3';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/vigenere" element={<Vigenere />} />
                     <Route path="/lsfr" element={<Lsfr />} />
                     <Route path="/stream_cipher" element={<StreamCipher />} />
+                    <Route path="/des" element={<Des />} />
                 </Routes>
             </Router>
         </ScreenWrapper>
